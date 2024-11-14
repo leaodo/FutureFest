@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <title>Adicionar planta</title>
+    
+</head>
+<body>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card mt-5">
+                <div class="card-body">
+                    <h1 class="card-title text-center">Adicionar dica</h1>
+                    <form action="/cadastro" method="post">
+                        <div class="form-group">
+                            <label for="titulo">Titulo:</label>
+                            <input type="text" class="form-control" id="titulo" name="titulo" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="desc">Descrição:</label>
+                            <input type="text" class="form-control" id="desc" name="desc" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="url_foto">Escolha uma imagem:</label>
+                            <div id="image-options" class="d-flex flex-wrap">
+                                <label>
+                                    <input type="radio" name="url_foto" value="https://i.ibb.co/HzTmFXd/Group-46.jpg" required>
+                                    <img src="https://i.ibb.co/HzTmFXd/Group-46.jpg" alt="Image 1" class="img-thumbnail m-2" width="100">
+                                </label>
+                                <label>
+                                    <input type="radio" name="url_foto" value="https://i.ibb.co/Dr2VLyZ/Group-47.jpg" required>
+                                    <img src="https://i.ibb.co/Dr2VLyZ/Group-47.jpg" alt="Image 2" class="img-thumbnail m-2" width="100">
+                                </label>
+                                <label>
+                                    <input type="radio" name="url_foto" value="https://i.ibb.co/9tMmMcJ/Group-48.jpg" required>
+                                    <img src="https://i.ibb.co/9tMmMcJ/Group-48.jpg" alt="Image 3" class="img-thumbnail m-2" width="100">
+                                </label>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-block">Cadastrar dica</button>
+                        <a href="/p" class="btn btn-custom allan-bold">voltar</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>

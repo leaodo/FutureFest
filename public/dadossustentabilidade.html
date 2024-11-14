@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página Inicial</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style2.css">
+
+</head>
+
+<body>
+
+
+  
+<div class="text-white bg-custom3">
+
+  <div class=" text-center bg-custom3 border-dark pb-2 ">
+    <div class="row align-items-center">
+      <div class="col">
+        <a href="/"><img src="https://i.ibb.co/pP5Ftx8/Group-39.jpg" style="width:20%; height:75px"
+            class="d-flex align-items-start" alt="logo"></a>
+      </div>
+      <div class="col">
+        <a href="http://localhost:3000/p" class="btn btn-custom allan-bold">DICAS</a>
+        <a href="http://localhost:3000/paciente" class="btn btn-custom allan-bold">CONTATO</a>
+        <a href="http://localhost:3000/medicamento" class="btn btn-custom allan-bold">PRODUTOS</a>
+        <a href="http://localhost:3000/venda" class="btn btn-custom allan-bold">SOBRE-NÓS</a>
+        <a href="http://localhost:3000/chat" class="btn btn-custom2 allan-bold">CHAT IA</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<script>
+  function searchPaciente(event) {
+    event.preventDefault();
+    const titulo = document.getElementById('titulo').value;
+    if (titulo) {
+      window.location.href = `/paciente2/${encodeURIComponent(titulo)}`;
+    }
+  }
+</script>
+
+
+
+
+<div class=" bg-custom3 text-white">
+  <div class="row justify-content-center">
+      <div class="col-md-12">
+          <div class="card shadow-sm "  style="border: none;">
+              <div class="card-body bg-custom3">
+                  <h4 class="text-center mb-4">Adicione uma dica de sustentabilidade que você pratique</h4>
+                  <div class="text-center mb-4">
+                      <a href="/cadastro" class="d-block mb-2 recicla2">Cadastrar Nova Dica</a>
+                  </div>
+                  <div class="row" id="pacientes-cards"></div> 
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+      fetch('/pacientes')
+          .then(response => response.json())
+          .then(pacientes => {
+              const cardsContainer = document.getElementById('pacientes-cards');
+              cardsContainer.innerHTML = pacientes.map(paciente => `
+                  <div class="col-md-4 mb-4">
+                      <div class="card-container">
+                          <div class="card-flip">
+                              <div class="card-front">
+                                  <div class="image-container">
+                                      <img src="${paciente.url_foto}" class="card-img-top" style="width:100%; height:400px" alt="Paciente">
+                                      <h5 class="card-title card-titlecoleta">${paciente.titulo}</h5>
+                                  </div>
+                              </div>
+                              <div class="card-back">
+                                  <div class="card-body">
+                                      <p class="card-text text-white mt-3 pt-5">
+                                          ${paciente.desc}<br>
+                                      </p>
+                                      <div class="btn-group btn-group-sm" role="group">
+                                          <a href="/atualizar?id=${paciente._id}" class="btn btn-warning">Atualizar</a>
+                                          <form action="/deletar" method="post" onsubmit="return confirm('Tem certeza que deseja excluir este paciente?');" style="display:inline;">
+                                              <input type="hidden" name="id" value="${paciente._id}">
+                                              <button type="submit" class="btn btn-danger">Deletar</button>
+                                          </form>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              `).join('');
+          })
+          .catch(error => console.error('Erro ao carregar pacientes:', error));
+  });
+</script>
+
+
+
+</div>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

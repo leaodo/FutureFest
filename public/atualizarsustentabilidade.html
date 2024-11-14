@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atualizar Dados da categoria</title>
+    <link rel="stylesheet" href="style2.css">
+</head>
+<body>
+    
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h1 class="card-title text-center">Atualizar dica</h1>
+                        <form action="/atualizar" method="post">
+                            <input type="hidden" id="id" name="id">
+                            <div class="form-group">
+                                <label for="titulo">Titulo:</label>
+                                <input type="text" class="form-control" id="titulo" name="titulo" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="desc">Descrição:</label>
+                                <input type="text" class="form-control" id="desc" name="desc" required>
+                            </div>
+    
+                            <div class="form-group">
+                                <label for="url_foto">Escolha uma imagem:</label>
+                                <div id="image-options" class="d-flex flex-wrap">
+                                    <label>
+                                        <input type="radio" name="url_foto" value="https://i.ibb.co/HzTmFXd/Group-46.jpg" required>
+                                        <img src="https://i.ibb.co/HzTmFXd/Group-46.jpg" alt="Image 1" class="img-thumbnail m-2" width="100">
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="url_foto" value="https://i.ibb.co/Dr2VLyZ/Group-47.jpg" required>
+                                        <img src="https://i.ibb.co/Dr2VLyZ/Group-47.jpg" alt="Image 2" class="img-thumbnail m-2" width="100">
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="url_foto" value="https://i.ibb.co/9tMmMcJ/Group-48.jpg" required>
+                                        <img src="https://i.ibb.co/9tMmMcJ/Group-48.jpg" alt="Image 3" class="img-thumbnail m-2" width="100">
+                                    </label>
+                                </div>
+                            </div>
+    
+                            <button type="submit" class="btn btn-primary btn-block">Atualizar dica</button>
+                            <a href="/p" class="btn btn-custom allan-bold">voltar</a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const urlParams = new URLSearchParams(window.location.search);
+        const pacienteId = urlParams.get('id');
+        if (pacienteId) {
+            fetch(`/paciente/${pacienteId}`)
+                .then(response => response.json())
+                .then(paciente => {
+                    document.getElementById('id').value = paciente._id;
+                    document.getElementById('titulo').value = paciente.titulo;
+                    document.getElementById('desc').value = paciente.desc;
+                    document.getElementById('url_foto').value = paciente.url_foto;
+                })
+                .catch(error => console.error('Erro ao carregar dados da dica:', error));
+        }
+    });
+</script>
+</body>
+</html>
